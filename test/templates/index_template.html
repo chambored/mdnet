@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+    <link href = "css/styles.css" type = "text/css" rel = "stylesheet">
+</head>
+<body>
+    <div id = "wrapper">
+        <h1>My Blog</h1>
+        {% for post in posts %}
+        <div id = "post_card">
+            <h2><a href="{{ post.file }}">{{ post.title }}</a></h2>
+            <p>{{ post.date }}</p>
+            <p>{{ post.tldr }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

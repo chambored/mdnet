@@ -1,0 +1,16 @@
+# .gitignore
+
+# Ignore Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+
+# Ignore virtual environments
+venv/
+
+# Ignore test output/input
+test/html/
+test/md/
+
