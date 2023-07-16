@@ -50,10 +50,8 @@ The rest of the file, after the second '---', is the content of the post. This s
 
 ## Example
 Here's an example of how you might structure your project:
+```
 my_blog/
-    mdnet/
-        __init__.py
-        mdnet.py
     templates/
         post.html
         index.html
@@ -61,7 +59,7 @@ my_blog/
         post1.md
         post2.md
     output/
-
+```
 You can generate the site with this command:
 ```
 mdnet posts output templates/post.html templates/index.html
