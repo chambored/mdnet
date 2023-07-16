@@ -21,16 +21,19 @@ def render_index(template_path, posts):
     return template.render(posts=posts)
 
 def generate_site(input_dir, output_dir, template_path, index_path):
+    posts_dir = output_dir / 'posts'
+    posts_dir.mkdir(exist_ok=True)
+
     posts = []
     for md_file in Path(input_dir).iterdir():
         if md_file.suffix == ".md":
             post = frontmatter.load(md_file)
-            html_file = output_dir / (post.metadata['title'] + ".html")
+            html_file = posts_dir / (post.metadata['title'] + ".html")
             html_file.write_text(render_template(template_path, post.metadata, convert_md_to_html(post.content)))
             posts.append({'title' : post.metadata['title'], 
                           'date' : post.metadata['date'],
                           'tldr' : post.metadata['tldr'],
-                          'file' : html_file.name})
+                          'file' : 'posts/' + html_file.name})
     
     (output_dir / 'index.html').write_text(render_index(index_path, posts))
 
