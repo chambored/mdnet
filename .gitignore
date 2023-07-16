@@ -14,3 +14,7 @@ venv/
 test/html/
 test/md/
 
+# Ignore distribution packages
+dist/
+build/
+*.egg-info/
