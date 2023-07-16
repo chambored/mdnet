@@ -52,9 +52,6 @@ The rest of the file, after the second '---', is the content of the post. This s
 Here's an example of how you might structure your project:
 ```
 my_blog/
-    mdnet/
-        __init__.py
-        mdnet.py
     templates/
         post.html
         index.html
