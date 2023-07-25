@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='mdnet',
-    version='0.1.1',
+    version='0.1.2',
     packages=['mdnet'],
     install_requires=[
         'markdown',
