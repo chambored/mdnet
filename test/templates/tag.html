@@ -6,6 +6,15 @@
 </head>
   <body>
       <div id = "wrapper">
+      <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../all_tags.html">All Tags</a></li>
+                    <li><a href="../all_posts.html">All Posts</a></li>
+                </ul>
+            </nav>
+        </header>
         <h1>Posts tagged with "{{ tag }}"</h1>
         {% for post in posts %}
         <div id = "post_card">

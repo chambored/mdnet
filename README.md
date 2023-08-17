@@ -1,94 +1,106 @@
-# MDNet: A Static Site Generator
-MDNet is a simple static site generator that converts Markdown files into HTML files. It uses Jinja2 for templating and supports metadata in the form of YAML Front Matter.
-
-## Features
-- Converts Markdown files to HTML
-- Supports YAML Front Matter for metadata
-- Generates an index page with links to all posts
-- Generates tag pages with links to all posts with a given tag
-- Customizable with Jinja2 templates
+# mdnet
+`mdnet` is a simple static site generator that converts Markdown files into HTML using specified templates. It's designed to be lightweight and easy to use.
 
 ## Installation
-You can install MDNet with pip:
-
-```bash
+You can install `mdnet` via pip:
+```
 pip install mdnet
 ```
-This will install MDNet and its dependencies, and create a command line script that you can use to run MDNet.
 
 ## Usage
-After installing MDNet, you can use it like this:
+### Basic Command
+To generate a static site using the default configurations specified in `config.yaml`:
+
 ```
-mdnet input_dir output_dir post_template_path index_template_path tag_template_path
+mdnet
 ```
-- `input_dir` is the directory containing the Markdown files.
-- `output_dir` is the directory to output the HTML files to.
-- `post_template_path` is the path to the HTML template for the posts.
-- `index_template_path` is the path to the HTML template for the index page.
-- `tag_template_path` is the path to the HTML template for the tag pages.
 
-The templates should be Jinja2 templates.
 
-The post template will be rendered with the following variables:
+### Command-Line Arguments
+You can override the default configurations using command-line arguments:
+- **input_dir**: Directory containing the Markdown source files.
+- **output_dir**: Destination directory for the generated HTML files.
+- **post_template_path**: Path to the HTML template for individual posts.
+- **index_template_path**: Path to the HTML template for the main index page.
 
-- 'title': The title of the post
-- 'date': the date of the post
-- 'content': the content of the post
+For example:
+```
+mdnet custom_input custom_output custom_post_template.html custom_index_template.html
+```
 
-The index template will be rendered with the following variables:
 
-- 'posts': a list of dictionaries. Each dictionary contains the 'title', 'date', 'tldr', and 'file' (filename) of a post.
-- 'tags': a list of all unique tags used in the posts.
+### Optional Arguments
+- **-t, --tag_template_path**: Path to the HTML template for individual tag pages. If provided, tag pages will be generated.
+- **-a, --all_tags_template_path**: Path to the HTML template for the page listing all tags.
+- **-n, --num_posts**: Number of latest posts to display on the main index page. Defaults to 8.
+- **-p, --all_posts_template_path**: Path to the HTML template for the page listing all posts.
 
-The tag template will be rendered with the following variables:
+### Interactive Mode
+Run the generator in interactive mode, prompting for each required input:
+```
+mdnet -i
+```
 
-- 'posts': a list of dictionaries. Each dictionary contains the 'title', 'date', 'tldr', and 'file' (filename) of a post with the given tag.
-- 'tag': the name of the tag.
+## Configuration
+You can specify default configurations in a `config.yaml` file. This allows you to run `mdnet` without having to provide command-line arguments every time.
 
-## Writing Posts
-Posts should be written in Markdown and include YAML Front Matter. Front Matter is a block of YAML at the top of the file that is used for storing metadata about the file. Here's an example of a post:
+Example `config.yaml`:
+```
+input_dir: default_input
+output_dir: default_output
+post_template_path: default_post_template.html
+index_template_path: default_index_template.html
+```
+
+## Frontmatter YAML Parameters
+When writing your Markdown files, you can optionally include a frontmatter section at the beginning of each file. This section is written in YAML and allows you to specify metadata for each post. Here are the supported parameters:
+- **title**: The title of the post. If not provided, the filename (without extension) will be used.
+  - Format: String
+- **date**: The publication date of the post. If not provided, posts without dates will be considered older.
+  - Format: `YYYY-MM-DD`
+- **tldr**: A short summary or "too long; didn't read" for the post.
+  - Format: String
+- **tags**: A list of tags associated with the post.
+  - Format: List of strings
+
+### Example Frontmatter
 ```
 ---
-title: My First Post
-date: 2023-07-14
-tldr: This is a short description of my post.
+title: "My First Post"
+date: 2023-07-27
+tldr: "A brief summary of the post's content."
 tags:
-  - tag1
-  - tag2
+  - tutorial
+  - markdown
 ---
-# My First Post
+```
 
-This is the content of my post. You can write anything you want here, in Markdown format.
-```
-In this example, the Front Matter is the part between the '---' lines. It includes a 'title', a 'date', a 'tldr' summary, and a list of 'tags'. These values will be used to populate the templates when generating the HTML files.
-
-The rest of the file, after the second '---', is the content of the post. This should be written in Markdown, and it will be converted to HTML when generating the site.
-
-## Assumptions
-MDNet makes the following assumptions:
-- All Markdown files are located directly in the input_dir directory. Subdirectories are not searched.
-- All Markdown files have the '.md' extension.
-- All Markdown files include YAML Front Matter with 'title', 'date', and 'tldr' fields. The 'tags' field is optional.
-- The 'date' field in the Front Matter is in a format that can be sorted using the standard comparison operators, such as "YYYY-MM-DD".
-- The 'tags' field in the Front Matter, if present, is a list of strings.
-- The HTML templates are located at the paths specified by post_template_path, index_template_path, and tag_template_path.
-- The HTML templates use the Jinja2 syntax and include placeholders for all the variables mentioned in the "Usage" section above.
-
-## Example
-Here's an example of how you might structure your project:
-```
-my_blog/
-    templates/
-        post.html
-        index.html
-        tag.html
-    posts/
-        post1.md
-        post2.md
-    output/
-```
-You can generate the site with this command:
-```
-mdnet posts output templates/post.html templates/index.html templates/tag.html
-```
-This will generate HTML files in the output directory.
+## Example Project Structure
+my_project/
+│
+├── posts/
+│   ├── post1.md
+│   ├── post2.md
+│   └── ...
+│
+├── public/
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── posts/
+│   │   ├── post1.html
+│   │   ├── post2.html
+│   │   └── ...
+│   └── tags/
+│       ├── tutorial.html
+│       ├── markdown.html
+│       └── ...
+│
+├── templates/
+│   ├── post_template.html
+│   ├── index_template.html
+│   ├── tag_template.html
+│   ├── all_tags_template.html
+│   └── all_posts_template.html
+│
+└── config.yaml
