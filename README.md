@@ -91,6 +91,7 @@ tags:
 
 ## Example Project Structure
 
+```
 my_project/
 │
 ├── posts/
@@ -121,3 +122,4 @@ my_project/
 │   └── all_posts_template.html
 │
 └── config.yaml
+```
