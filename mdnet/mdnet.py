@@ -43,7 +43,7 @@ def generate_site(input_dir, output_dir, post_template_path, index_template_path
             post_tags = post.metadata.get('tags', [])
 
             html_file = posts_dir / (title + ".html")
-            html_content = render_template(post_template_path, title=title, date=date, content=convert_md_to_html(post.content))
+            html_content = render_template(post_template_path, title=title, date=date_obj, content=convert_md_to_html(post.content))
             html_file.write_text(html_content)
             
             post_data = {
