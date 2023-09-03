@@ -10,8 +10,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="all_tags.html">All Tags</a></li>
-                    <li><a href="all_posts.html">All Posts</a></li>
+                    <li><a href="tags/index.html">All Tags</a></li>
+                    <li><a href="posts/index.html">All Posts</a></li>
                 </ul>
             </nav>
         </header>
@@ -25,7 +25,7 @@
         {% endfor %}
         </p>
         <h2>Tags</h2>
-        {% for tag in tags %}
+        {% for tag in tags_dict %}
         <a href="tags/{{ tag }}.html">{{ tag }}</a>
         {% endfor %}
     </div>

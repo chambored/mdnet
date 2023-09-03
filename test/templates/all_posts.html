@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Posts</title>
+    <link href="../css/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../tags/index.html">All Tags</a></li>
+                    <li><a href="index.html">All Posts</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>All Posts</h1>
+        <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{{ post.file }}">{{ post.title }}</a> - {{ post.date }}
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="../index.html">Back to Home</a>
+    </div>
+</body>
+</html>
+

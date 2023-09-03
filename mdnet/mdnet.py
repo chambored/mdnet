@@ -50,8 +50,7 @@ def generate_site(input_dir, output_dir, post_template_path, index_template_path
                 'title': title,
                 'date': date_obj,
                 'tldr': tldr,
-                'file': 'posts/' + html_file.name,
-                'tag_file': '../posts/' + html_file.name
+                'file': html_file.name
             }
 
             posts.append(post_data)
@@ -71,13 +70,13 @@ def generate_site(input_dir, output_dir, post_template_path, index_template_path
             (tags_dir / f'{tag}.html').write_text(tag_content)
 
         all_tags_content = render_template(all_tags_template_path, tags_dict=tags_dict)
-        (output_dir / 'all_tags.html').write_text(all_tags_content)
+        (tags_dir / 'index.html').write_text(all_tags_content)
 
     index_content = render_template(index_template_path, posts=posts[:num_posts], tags_dict=tags_dict)
     (output_dir / 'index.html').write_text(index_content)
 
     all_posts_content = render_template(all_posts_template_path, posts=posts)
-    (output_dir / 'all_posts.html').write_text(all_posts_content)
+    (posts_dir / 'index.html').write_text(all_posts_content)
 
 def load_config():
     with open("config.yaml", 'r') as stream:

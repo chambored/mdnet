@@ -1,0 +1,8 @@
+input_dir: "posts/"
+output_dir: "public/"
+post_template_path: "templates/post.html"
+index_template_path: "templates/index.html"
+tag_template_path: "templates/tag.html"
+all_tags_template_path: "templates/all_tags.html"
+all_posts_template_path: "templates/all_posts.html"
+num_posts: 8

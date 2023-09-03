@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Tags</title>
+    <link href="../css/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html">All Tags</a></li>
+                    <li><a href="../posts/index.html">All Posts</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>All Tags</h1>
+        <ul>
+        {% for tag in tags_dict %}
+            <li><a href="{{ tag }}.html">{{ tag }}</a></li>
+        {% endfor %}
+        </ul>
+        <a href="../index.html">Back to Home</a>
+    </div>
+</body>
+</html>
+
