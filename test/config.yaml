@@ -6,3 +6,8 @@ tag_template_path: "templates/tag.html"
 all_tags_template_path: "templates/all_tags.html"
 all_posts_template_path: "templates/all_posts.html"
 num_posts: 8
+rss: true # IF TRUE ALL POSTS MUST HAVE YAML FRONTMATTER
+site_title: "My Test Blog"
+site_url: "https://mytestblog.com/"
+site_description: "The Writings of Me"
+timezone: America/Los_Angeles

@@ -1,16 +1,21 @@
 from setuptools import setup
+from pathlib import Path
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='mdnet',
-    version='0.1.5',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    version='0.1.8',
     packages=['mdnet'],
     install_requires=[
         'markdown',
         'jinja2',
-        'python-frontmatter'
+        'python-frontmatter',
+        'feedgen',
+        'pytz'
     ],
     entry_points={
         'console_scripts': [

@@ -2,6 +2,13 @@
 
 `mdnet` is a simple static site generator that converts Markdown files into HTML using specified templates. It's designed to be lightweight and easy to use.
 
+## Features
+
+- HTML generation
+- RSS Feed generation
+- Post metadata via YAML Frontmatter
+- Configurable via YAML
+
 ## Installation
 
 You can install `mdnet` via pip:
@@ -42,14 +49,6 @@ mdnet custom_input custom_output custom_post_template.html custom_index_template
 - **-n, --num_posts**: Number of latest posts to display on the main index page. Defaults to 8.
 - **-p, --all_posts_template_path**: Path to the HTML template for the page listing all posts.
 
-### Interactive Mode
-
-Run the generator in interactive mode, prompting for each required input:
-
-```
-mdnet -i
-```
-
 ## Configuration
 
 You can specify default configurations in a `config.yaml` file. This allows you to run `mdnet` without having to provide command-line arguments every time.
@@ -57,10 +56,19 @@ You can specify default configurations in a `config.yaml` file. This allows you 
 Example `config.yaml`:
 
 ```
-input_dir: default_input
-output_dir: default_output
-post_template_path: default_post_template.html
-index_template_path: default_index_template.html
+input_dir: "posts/"
+output_dir: "public/"
+post_template_path: "templates/post.html"
+index_template_path: "templates/index.html"
+tag_template_path: "templates/tag.html"
+all_tags_template_path: "templates/all_tags.html"
+all_posts_template_path: "templates/all_posts.html"
+num_posts: 8
+rss: true # IF TRUE ALL POSTS MUST HAVE YAML FRONTMATTER
+site_title: "My Test Blog"
+site_url: "https://mytestblog.com/"
+site_description: "The Writings of Me"
+timezone: America/Los_Angeles
 ```
 
 ## Frontmatter YAML Parameters
@@ -108,6 +116,8 @@ my_project/
 │   │   ├── post1.html
 │   │   ├── post2.html
 │   │   └── ...
+│   ├── resources/
+│   │   └── rss.xml
 │   └── tags/
 │       ├── index.html
 │       ├── tutorial.html
@@ -120,6 +130,9 @@ my_project/
 │   ├── tag_template.html
 │   ├── all_tags_template.html
 │   └── all_posts_template.html
+│
+├── resources/
+│   └── guids.json
 │
 └── config.yaml
 ```

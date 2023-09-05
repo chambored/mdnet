@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Blog</title>
+    <title>{{ site_title }}</title>
     <link href = "css/styles.css" type = "text/css" rel = "stylesheet">
 </head>
 <body>
@@ -15,7 +15,7 @@
                 </ul>
             </nav>
         </header>
-        <h1>My Site</h1>
+        <h1>{{ site_title }}</h1>
         {% for post in posts %}
         <div id = "post_card">
             <h2><a href="posts/{{ post.file }}">{{ post.title }}</a></h2>
